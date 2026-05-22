@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Bali Lestari — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fafaf8; color: #1a1a1a; min-height: 100vh; }
+
+  .container { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header { padding: 32px 0 24px; border-bottom: 1px solid #eee; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  header p { color: #b8860b; font-size: 11px; margin-top: 4px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; }
+  .btn-primary { padding: 11px 28px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { padding: 11px 28px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #888; cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 18px 20px; }
+  .stat-val { font-size: 26px; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+  .stat-label { font-size: 11px; color: #999; margin-top: 3px; letter-spacing: 0.8px; text-transform: uppercase; }
+
+  /* Form */
+  .form-card { background: #fff; border: 1px solid #eee; border-radius: 14px; padding: 32px 28px; margin-bottom: 36px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); animation: fUp 0.3s ease; }
+  .form-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 24px; font-weight: 600; }
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .form-group { }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { display: block; font-size: 11px; font-weight: 600; color: #999; margin-bottom: 6px; letter-spacing: 0.8px; text-transform: uppercase; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid #e0e0e0;
+    background: #fafaf8; color: #1a1a1a; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: #1a1a1a; box-shadow: 0 0 0 2px rgba(26,26,26,0.06);
+  }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  ::placeholder { color: #bbb; }
+
+  .img-preview { margin-top: 18px; }
+  .img-preview p { font-size: 11px; color: #999; margin-bottom: 8px; }
+  .img-preview img { max-width: 280px; max-height: 180px; border-radius: 10px; border: 1px solid #eee; object-fit: cover; }
+
+  .form-actions { margin-top: 28px; display: flex; gap: 12px; }
+
+  /* Search */
+  .search-bar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .search-bar input { flex: 1 1 220px; }
+  .search-bar select { width: auto; min-width: 140px; cursor: pointer; }
+  .search-bar input, .search-bar select {
+    padding: 11px 14px; border-radius: 8px; border: 1px solid #e0e0e0;
+    background: #fafaf8; color: #1a1a1a; font-size: 14px; font-family: 'DM Sans', sans-serif;
+  }
+  .search-bar input:focus, .search-bar select:focus { outline: none; border-color: #1a1a1a; box-shadow: 0 0 0 2px rgba(26,26,26,0.06); }
+  .btn-refresh { padding: 10px 16px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #888; cursor: pointer; font-size: 13px; }
+
+  /* Tour card */
+  .tour-list { display: flex; flex-direction: column; gap: 8px; padding-bottom: 40px; }
+  .tour-card { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; animation: fUp 0.25s ease both; }
+  .tour-card:hover { border-color: #d0d0d0; }
+  .tour-row { padding: 16px 20px; display: flex; align-items: center; gap: 16px; cursor: pointer; flex-wrap: wrap; }
+  .tour-img { width: 60px; height: 60px; border-radius: 10px; flex-shrink: 0; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ccc; background-size: cover; background-position: center; background-color: #f5f5f3; }
+  .tour-info { flex: 1; min-width: 180px; }
+  .tour-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .tour-title-row h3 { font-size: 15px; font-weight: 600; margin: 0; }
+  .status-badge { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 600; letter-spacing: 0.3px; display: inline-flex; align-items: center; gap: 4px; }
+  .status-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
+  .tour-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: #999; }
+  .tour-price { color: #1a1a1a; font-weight: 600; }
+  .tour-cat { color: #b8860b; }
+  .tour-arrow { font-size: 10px; color: #ccc; transition: transform 0.2s; }
+  .tour-arrow.open { transform: rotate(180deg); }
+
+  .tour-detail { padding: 0 20px 18px; border-top: 1px solid #f0f0f0; padding-top: 16px; animation: fUp 0.2s ease; }
+  .tour-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; font-size: 12px; color: #666; margin-bottom: 12px; }
+  .tour-detail-grid span { color: #aaa; }
+  .tour-detail p { font-size: 12px; color: #777; margin: 0 0 6px; line-height: 1.7; }
+  .tour-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .btn-action { padding: 7px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+  .btn-action:hover { opacity: 0.8; }
+  .btn-approve { background: #eaf7ed; color: #1a7a2e; }
+  .btn-pending { background: #f5f5f3; color: #888; }
+  .btn-edit { background: #f5f5f3; color: #555; }
+  .btn-delete { background: #fdeaea; color: #c0392b; }
+
+  /* Empty & loading */
+  .empty { text-align: center; padding: 60px; color: #bbb; }
+  .empty .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.3; }
+  .empty .title { font-size: 17px; font-family: 'Cormorant Garamond', serif; color: #999; }
+  .empty .sub { font-size: 12px; color: #bbb; margin-top: 4px; }
+  .loading { text-align: center; padding: 60px; color: #bbb; }
+  .spinner { font-size: 28px; margin-bottom: 12px; animation: spin 1.2s linear infinite; color: #ccc; }
+
+  /* Error */
+  .error-box { background: #fdeaea; border: 1px solid #f5c6c6; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; color: #c0392b; font-size: 13px; }
+
+  /* Toast */
+  .toast { position: fixed; top: 20px; right: 20px; z-index: 1000; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 13px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.15); animation: sIn 0.3s ease; }
+  .toast-ok { background: #1a1a1a; }
+  .toast-err { background: #c0392b; }
+
+  /* Modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 999; }
+  .modal { background: #fff; border-radius: 14px; padding: 32px; max-width: 380px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  .modal .icon { width: 52px; height: 52px; border-radius: 50%; background: #fdeaea; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; }
+  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 8px; font-weight: 600; }
+  .modal p { color: #888; font-size: 13px; margin-bottom: 24px; line-height: 1.6; }
+  .modal-actions { display: flex; gap: 10px; justify-content: center; }
+  .btn-cancel { padding: 10px 24px; border-radius: 8px; border: 1px solid #e0e0e0; background: #fff; color: #666; cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif; }
+  .btn-danger { padding: 10px 24px; border-radius: 8px; border: none; background: #c0392b; color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; }
+
+  footer { border-top: 1px solid #eee; padding: 20px 0 32px; text-align: center; color: #ccc; font-size: 11px; letter-spacing: 0.5px; }
+
+  .hidden { display: none !important; }
+
+  @keyframes sIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes fUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <div>
+      <h1>Tour Bali Lestari</h1>
+      <p>Admin Panel</p>
+    </div>
+    <button class="btn-primary" id="btnToggle" onclick="toggleView()">+ Tambah Tour</button>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats" id="stats"></div>
+
+  <!-- Form -->
+  <div class="form-card hidden" id="formSection">
+    <h2 id="formTitle">Tambah Tour Baru</h2>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Judul Tour *</label>
+        <input id="f_title" placeholder="Mount Batur Sunrise Trek">
+      </div>
+      <div class="form-group">
+        <label>Harga *</label>
+        <input id="f_price" type="number" placeholder="65">
+      </div>
+      <div class="form-group">
+        <label>Lokasi *</label>
+        <input id="f_location" placeholder="Kintamani, Bali">
+      </div>
+      <div class="form-group">
+        <label>Durasi</label>
+        <input id="f_duration" placeholder="8 jam">
+      </div>
+      <div class="form-group">
+        <label>Kategori</label>
+        <select id="f_category">
+          <option>Adventure</option><option>Culture</option><option>Nature</option>
+          <option>Island</option><option>Ocean</option><option>Exclusive</option>
+          <option>Food & Culinary</option><option>Spiritual & Wellness</option>
+          <option>Photography</option><option>Family</option><option>Custom / Private</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Max Group</label>
+        <input id="f_max_group" type="number" placeholder="10">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input id="f_whatsapp" placeholder="6281234567890">
+      </div>
+      <div class="form-group">
+        <label>URL Gambar</label>
+        <input id="f_image_url" placeholder="https://images.unsplash.com/..." oninput="previewImg()">
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="f_status">
+          <option value="approved">Approved</option>
+          <option value="pending">Pending</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Termasuk / Includes</label>
+        <input id="f_includes" placeholder="Transport, Makan siang, Tiket masuk, Guide">
+      </div>
+      <div class="form-group full">
+        <label>Deskripsi</label>
+        <textarea id="f_description" rows="4" placeholder="Jelaskan tour ini secara detail..."></textarea>
+      </div>
+    </div>
+    <div class="img-preview hidden" id="imgPreview">
+      <p>Preview Gambar:</p>
+      <img id="previewImage" src="" alt="">
+    </div>
+    <div class="form-actions">
+      <button class="btn-primary" id="btnSave" onclick="saveTour()">Simpan Tour</button>
+      <button class="btn-secondary" onclick="cancelForm()">Batal</button>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar" id="searchBar">
+    <input id="searchInput" placeholder="Search tours..." oninput="renderList()">
+    <select id="filterStatus" onchange="renderList()">
+      <option value="all">All Status</option>
+      <option value="approved">Approved</option>
+      <option value="pending">Pending</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <button class="btn-refresh" onclick="loadTours()">↻</button>
+  </div>
+
+  <!-- Error -->
+  <div class="error-box hidden" id="errorBox"></div>
+
+  <!-- Loading -->
+  <div class="loading hidden" id="loadingBox">
+    <div class="spinner">◌</div>
+    <p style="font-size:13px;color:#aaa">Memuat data...</p>
+  </div>
+
+  <!-- Empty -->
+  <div class="empty hidden" id="emptyBox">
+    <div class="icon">🏝️</div>
+    <div class="title" id="emptyTitle"></div>
+    <div class="sub" id="emptySub"></div>
+  </div>
+
+  <!-- Tour list -->
+  <div class="tour-list" id="tourList"></div>
+
+  <footer>© 2026 Tour Bali Lestari</footer>
+</div>
+
+<!-- Toast -->
+<div class="toast hidden" id="toastEl"></div>
+
+<!-- Delete Modal -->
+<div class="modal-bg hidden" id="deleteModal">
+  <div class="modal">
+    <div class="icon">🗑️</div>
+    <h3>Hapus Tour?</h3>
+    <p id="deleteMsg"></p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeDelete()">Batal</button>
+      <button class="btn-danger" onclick="confirmDelete()">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://nmsublcklbpyccaendon.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tc3VibGNrbGJweWNjYWVuZG9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjUwNTAsImV4cCI6MjA5MTY0MTA1MH0.Y6lZ15a12eaAMxPDMU8x7uNRcEmJFZTGW2e-dx9mRa8";
+
+let tours = [];
+let editingId = null;
+let deleteId = null;
+let currentView = "list"; // list or form
+
+async function sbFetch(endpoint, opts = {}) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${endpoint}`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: opts.prefer || "return=representation",
+    },
+    ...opts,
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+function toast(msg, type = "ok") {
+  const el = document.getElementById("toastEl");
+  el.textContent = msg;
+  el.className = `toast toast-${type}`;
+  setTimeout(() => el.className = "toast hidden", 3200);
+}
+
+// ── Load tours ──
+async function loadTours() {
+  show("loadingBox"); hide("tourList"); hide("emptyBox"); hide("errorBox");
+  try {
+    tours = (await sbFetch("tours?order=created_at.desc")) || [];
+    renderStats();
+    renderList();
+  } catch (e) {
+    const eb = document.getElementById("errorBox");
+    eb.textContent = "⚠️ Gagal memuat: " + e.message;
+    show("errorBox");
+  }
+  hide("loadingBox");
+}
+
+// ── Render stats ──
+function renderStats() {
+  const s = {
+    total: tours.length,
+    approved: tours.filter(t => t.status === "approved").length,
+    pending: tours.filter(t => t.status === "pending").length,
+    rejected: tours.filter(t => t.status === "rejected").length,
+  };
+  document.getElementById("stats").innerHTML = [
+    { l: "Total Tour", v: s.total, c: "#1a1a1a" },
+    { l: "Approved", v: s.approved, c: "#1a7a2e" },
+    { l: "Pending", v: s.pending, c: "#b8860b" },
+    { l: "Rejected", v: s.rejected, c: "#c0392b" },
+  ].map(x => `<div class="stat-card"><div class="stat-val" style="color:${x.c}">${x.v}</div><div class="stat-label">${x.l}</div></div>`).join("");
+}
+
+// ── Render list ──
+function renderList() {
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const sf = document.getElementById("filterStatus").value;
+  const filtered = tours.filter(t => {
+    const mq = !q || (t.title || "").toLowerCase().includes(q) || (t.location || "").toLowerCase().includes(q);
+    return mq && (sf === "all" || t.status === sf);
+  });
+
+  const listEl = document.getElementById("tourList");
+
+  if (filtered.length === 0) {
+    hide("tourList");
+    document.getElementById("emptyTitle").textContent = tours.length === 0 ? "Belum ada tour" : "Tidak ada hasil";
+    document.getElementById("emptySub").textContent = tours.length === 0 ? 'Klik "+ Tambah Tour" untuk mulai' : "Coba ubah kata kunci";
+    show("emptyBox");
+    return;
+  }
+
+  hide("emptyBox");
+  show("tourList");
+
+  const statusMap = {
+    approved: { bg: "#eaf7ed", text: "#1a7a2e", dot: "#2ecc71" },
+    pending: { bg: "#fff8e7", text: "#b8860b", dot: "#f0c040" },
+    rejected: { bg: "#fdeaea", text: "#c0392b", dot: "#e74c3c" },
+  };
+
+  listEl.innerHTML = filtered.map((t, i) => {
+    const s = statusMap[t.status] || statusMap.pending;
+    const imgStyle = t.image_url ? `background-image:url(${t.image_url})` : "";
+    return `
+      <div class="tour-card" style="animation-delay:${i * 0.03}s">
+        <div class="tour-row" onclick="toggleExpand('${t.id}')">
+          <div class="tour-img" style="${imgStyle}">${t.image_url ? "" : "🏝️"}</div>
+          <div class="tour-info">
+            <div class="tour-title-row">
+              <h3>${t.title || "Untitled"}</h3>
+              <span class="status-badge" style="background:${s.bg};color:${s.text}">
+                <span class="status-dot" style="background:${s.dot}"></span>
+                ${t.status || "pending"}
+              </span>
+            </div>
+            <div class="tour-meta">
+              ${t.location ? `<span>📍 ${t.location}</span>` : ""}
+              ${t.price ? `<span class="tour-price">$${t.price} <span style="font-weight:400;color:#bbb">/ person</span></span>` : ""}
+              ${t.duration ? `<span>${t.duration}</span>` : ""}
+              ${t.category ? `<span class="tour-cat">${t.category}</span>` : ""}
+            </div>
+          </div>
+          <span class="tour-arrow" id="arrow-${t.id}">▼</span>
+        </div>
+        <div class="tour-detail hidden" id="detail-${t.id}">
+          <div class="tour-detail-grid">
+            <div><span>Kategori:</span> ${t.category || "—"}</div>
+            <div><span>Max Group:</span> ${t.max_group || "—"} orang</div>
+            <div><span>WhatsApp:</span> ${t.whatsapp || "—"}</div>
+          </div>
+          ${t.includes ? `<p><span style="color:#aaa">Includes:</span> ${t.includes}</p>` : ""}
+          ${t.description ? `<p>${t.description}</p>` : ""}
+          <div class="tour-actions">
+            <button class="btn-action ${t.status === 'approved' ? 'btn-pending' : 'btn-approve'}" onclick="event.stopPropagation();toggleStatus('${t.id}','${t.status}')">
+              ${t.status === "approved" ? "Set Pending" : "✓ Approve"}
+            </button>
+            <button class="btn-action btn-edit" onclick="event.stopPropagation();editTour('${t.id}')">Edit</button>
+            <button class="btn-action btn-delete" onclick="event.stopPropagation();openDelete('${t.id}','${(t.title || "").replace(/'/g, "\\'")}')">Hapus</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// ── Toggle expand ──
+function toggleExpand(id) {
+  const el = document.getElementById("detail-" + id);
+  const arrow = document.getElementById("arrow-" + id);
+  if (el.classList.contains("hidden")) {
+    // Close all others
+    document.querySelectorAll(".tour-detail").forEach(d => d.classList.add("hidden"));
+    document.querySelectorAll(".tour-arrow").forEach(a => a.classList.remove("open"));
+    el.classList.remove("hidden");
+    arrow.classList.add("open");
+  } else {
+    el.classList.add("hidden");
+    arrow.classList.remove("open");
+  }
+}
+
+// ── Toggle view ──
+function toggleView() {
+  if (currentView === "form") {
+    currentView = "list";
+    hide("formSection"); show("searchBar"); show("tourList");
+    document.getElementById("btnToggle").textContent = "+ Tambah Tour";
+    document.getElementById("btnToggle").style.background = "#1a1a1a";
+    document.getElementById("btnToggle").style.color = "#fff";
+    document.getElementById("btnToggle").style.border = "none";
+    editingId = null;
+    renderList();
+  } else {
+    currentView = "form";
+    clearForm();
+    editingId = null;
+    document.getElementById("formTitle").textContent = "Tambah Tour Baru";
+    document.getElementById("btnSave").textContent = "Simpan Tour";
+    show("formSection"); hide("searchBar"); hide("tourList"); hide("emptyBox");
+    document.getElementById("btnToggle").textContent = "← Kembali";
+    document.getElementById("btnToggle").style.background = "#fff";
+    document.getElementById("btnToggle").style.color = "#888";
+    document.getElementById("btnToggle").style.border = "1px solid #ddd";
+  }
+}
+
+function cancelForm() { toggleView(); }
+
+// ── Clear form ──
+function clearForm() {
+  ["title","price","location","duration","max_group","whatsapp","image_url","includes","description"].forEach(k => document.getElementById("f_" + k).value = "");
+  document.getElementById("f_category").value = "Adventure";
+  document.getElementById("f_status").value = "approved";
+  hide("imgPreview");
+}
+
+// ── Preview image ──
+function previewImg() {
+  const url = document.getElementById("f_image_url").value;
+  if (url) {
+    document.getElementById("previewImage").src = url;
+    show("imgPreview");
+  } else {
+    hide("imgPreview");
+  }
+}
+
+// ── Save tour ──
+async function saveTour() {
+  const title = document.getElementById("f_title").value.trim();
+  const price = document.getElementById("f_price").value.trim();
+  const location = document.getElementById("f_location").value.trim();
+  if (!title || !price || !location) { toast("Judul, Harga & Lokasi wajib diisi!", "err"); return; }
+
+  const payload = {
+    title, price: parseInt(price) || 0, location,
+    duration: document.getElementById("f_duration").value.trim(),
+    category: document.getElementById("f_category").value,
+    max_group: parseInt(document.getElementById("f_max_group").value) || 0,
+    whatsapp: document.getElementById("f_whatsapp").value.trim(),
+    image_url: document.getElementById("f_image_url").value.trim(),
+    status: document.getElementById("f_status").value,
+    includes: document.getElementById("f_includes").value.trim(),
+    description: document.getElementById("f_description").value.trim(),
+  };
+
+  document.getElementById("btnSave").textContent = "Menyimpan...";
+  document.getElementById("btnSave").disabled = true;
+
+  try {
+    if (editingId) {
+      await sbFetch(`tours?id=eq.${editingId}`, { method: "PATCH", body: JSON.stringify(payload) });
+      toast("Tour berhasil diupdate!");
+    } else {
+      await sbFetch("tours", { method: "POST", body: JSON.stringify(payload) });
+      toast("Tour baru ditambahkan!");
+    }
+    editingId = null;
+    toggleView();
+    loadTours();
+  } catch (e) {
+    toast("Error: " + e.message, "err");
+  }
+
+  document.getElementById("btnSave").textContent = editingId ? "Update Tour" : "Simpan Tour";
+  document.getElementById("btnSave").disabled = false;
+}
+
+// ── Edit tour ──
+function editTour(id) {
+  const t = tours.find(x => x.id == id);
+  if (!t) return;
+  editingId = id;
+  document.getElementById("f_title").value = t.title || "";
+  document.getElementById("f_price").value = t.price || "";
+  document.getElementById("f_location").value = t.location || "";
+  document.getElementById("f_duration").value = t.duration || "";
+  document.getElementById("f_category").value = t.category || "Adventure";
+  document.getElementById("f_max_group").value = t.max_group || "";
+  document.getElementById("f_whatsapp").value = t.whatsapp || "";
+  document.getElementById("f_image_url").value = t.image_url || "";
+  document.getElementById("f_status").value = t.status || "pending";
+  document.getElementById("f_includes").value = t.includes || "";
+  document.getElementById("f_description").value = t.description || "";
+  previewImg();
+
+  currentView = "form";
+  document.getElementById("formTitle").textContent = "Edit Tour";
+  document.getElementById("btnSave").textContent = "Update Tour";
+  show("formSection"); hide("searchBar"); hide("tourList"); hide("emptyBox");
+  document.getElementById("btnToggle").textContent = "← Kembali";
+  document.getElementById("btnToggle").style.background = "#fff";
+  document.getElementById("btnToggle").style.color = "#888";
+  document.getElementById("btnToggle").style.border = "1px solid #ddd";
+}
+
+// ── Toggle status ──
+async function toggleStatus(id, current) {
+  const ns = current === "approved" ? "pending" : "approved";
+  try {
+    await sbFetch(`tours?id=eq.${id}`, { method: "PATCH", body: JSON.stringify({ status: ns }) });
+    toast(`Status → ${ns}`);
+    loadTours();
+  } catch (e) {
+    toast("Error: " + e.message, "err");
+  }
+}
+
+// ── Delete ──
+function openDelete(id, title) { deleteId = id; document.getElementById("deleteMsg").textContent = `"${title}" akan dihapus permanen.`; show("deleteModal"); }
+function closeDelete() { hide("deleteModal"); deleteId = null; }
+async function confirmDelete() {
+  if (!deleteId) return;
+  try { await sbFetch(`tours?id=eq.${deleteId}`, { method: "DELETE" }); toast("Tour dihapus!"); closeDelete(); loadTours(); }
+  catch (e) { toast("Error: " + e.message, "err"); }
+}
+
+// ── Helpers ──
+function show(id) { document.getElementById(id).classList.remove("hidden"); }
+function hide(id) { document.getElementById(id).classList.add("hidden"); }
+
+// ── Init ──
+loadTours();
+</script>
+</body>
+</html>
