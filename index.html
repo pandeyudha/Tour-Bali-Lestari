@@ -3,202 +3,419 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tour Bali Lestari — Experience Bali Like a Local</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Tour Bali Lestari — Private tours guided by locals</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="container">
     <a href="#" class="logo">Tour Bali <span>Lestari</span></a>
     <div class="nav-links">
       <a href="#tours">Tours</a>
+      <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
-      <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
-      <a href="https://wa.me/610452499051" class="nav-cta" target="_blank">Book Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="https://wa.me/610452499051" class="nav-cta" target="_blank">Book now</a>
     </div>
-    <div class="mobile-toggle"><span></span><span></span><span></span></div>
+    <button class="mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="mobile-menu">
+  <a href="#tours">Tours</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#about">About</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://wa.me/610452499051" class="nav-cta" target="_blank">Book now</a>
+</div>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="home">
   <div class="container">
-    <div class="hero-top">
-      <div class="hero-badge"><span class="dot"></span>Open for Bookings 2026</div>
-      <h1>Experience <em>Bali</em> like a local, one epic adventure at a time!</h1>
-      <p class="hero-desc">Private tours designed by Balinese locals — temples, volcanoes, ocean adventures and hidden gems, all yours exclusively.</p>
+    <div class="hero-text">
+      <span class="hero-pill">Private tours · Bali, Indonesia</span>
+      <h1>Bali your way,<br>guided by locals</h1>
+      <p class="hero-desc">We're a small team of Balinese guides who show you the island we actually live in — temples, rice terraces, volcanoes, and coastlines, without the crowds.</p>
       <div class="hero-buttons">
-        <a href="#tours" class="btn-primary">Explore Tours <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="https://wa.me/610452499051" class="btn-outline" target="_blank">💬 WhatsApp Us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#tours" class="btn-primary">Explore tours</a>
+        <a href="https://wa.me/610452499051" class="btn-ghost" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 2 6.477 2 12c0 1.989.518 3.86 1.428 5.482L2 22l4.641-1.407A9.956 9.956 0 0011.998 22C17.521 22 22 17.523 22 12S17.521 2 11.998 2zm0 18.184a8.184 8.184 0 01-4.17-1.138l-.3-.178-3.105.942.929-3.006-.196-.31A8.184 8.184 0 113.816 12c0-4.515 3.669-8.184 8.182-8.184 4.514 0 8.184 3.669 8.184 8.184 0 4.514-3.67 8.184-8.184 8.184z"/></svg>
+          Chat with us
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-val">500+</div>
+          <div class="hero-stat-label">Happy guests</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">4.9 ★</div>
+          <div class="hero-stat-label">Average rating</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">15+</div>
+          <div class="hero-stat-label">Tour options</div>
+        </div>
       </div>
     </div>
-    <div class="hero-slider">
-      <div class="hero-slide"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero1.jpeg" alt="Bali temple gate"></div>
-      <div class="hero-slide"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero2.jpg" alt="Bali temple"></div>
-      <div class="hero-slide"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero3.jpeg" alt="Rice terrace"></div>
+    <div class="hero-images">
+      <div class="hero-img"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero1.jpeg" alt="Bali temple gate"></div>
+      <div class="hero-img"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero2.jpg" alt="Bali rice terraces"></div>
+      <div class="hero-img"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero3.jpeg" alt="Bali volcano"></div>
     </div>
   </div>
 </section>
 
-<section class="about" id="about">
+<!-- TRUST BAR -->
+<div class="trust-bar">
   <div class="container">
-    <div class="about-images">
-      <div class="about-img-1"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about1.jpeg" alt="Bali guide"></div>
-      <div class="about-img-2"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about2.jpeg" alt="Adventure"></div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Free hotel pickup
     </div>
-    <div class="about-content">
-      <span class="section-label">About Us</span>
-      <h2 class="section-title">Your local guides to the heart of Bali</h2>
-      <p class="section-desc">We are a team of passionate Balinese locals who believe in sharing the authentic beauty of our island. From hidden waterfalls to sacred temples, from sunrise volcano treks to underwater adventures.</p>
-      <p class="section-desc">Every tour is a personal invitation into our culture and way of life. Our mission is to create meaningful, unforgettable experiences that go beyond typical tourism.</p>
-      <a href="https://wa.me/610452499051" class="btn-primary" style="margin-top:32px" target="_blank">More About <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Free cancellation 24h
     </div>
-  </div>
-</section>
-
-<div class="video-banner">
-  <video autoplay muted loop playsinline poster="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about3.jpeg">
-    <source src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/videos/6981336-hd_1920_1080_25fps.mp4" type="video/mp4">
-  </video>
-  <div class="video-banner-overlay">
-    <div class="video-banner-text">Discover the magic of Bali through our eyes</div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      100% private
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+      English speaking guide
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Trusted since 2019
+    </div>
   </div>
 </div>
 
-<section class="marquee-section">
-  <div class="marquee-track">
-    <div class="marquee-item">Temple Tours <span class="sep"></span></div>
-    <div class="marquee-item">Volcano Sunrise <span class="sep"></span></div>
-    <div class="marquee-item">Rice Terraces <span class="sep"></span></div>
-    <div class="marquee-item">Waterfall Treks <span class="sep"></span></div>
-    <div class="marquee-item">Snorkeling <span class="sep"></span></div>
-    <div class="marquee-item">Cultural Tours <span class="sep"></span></div>
-    <div class="marquee-item">Private Driver <span class="sep"></span></div>
-    <div class="marquee-item">Hidden Gems <span class="sep"></span></div>
-    <div class="marquee-item">Temple Tours <span class="sep"></span></div>
-    <div class="marquee-item">Volcano Sunrise <span class="sep"></span></div>
-    <div class="marquee-item">Rice Terraces <span class="sep"></span></div>
-    <div class="marquee-item">Waterfall Treks <span class="sep"></span></div>
-    <div class="marquee-item">Snorkeling <span class="sep"></span></div>
-    <div class="marquee-item">Cultural Tours <span class="sep"></span></div>
-    <div class="marquee-item">Private Driver <span class="sep"></span></div>
-    <div class="marquee-item">Hidden Gems <span class="sep"></span></div>
-  </div>
-</section>
-
+<!-- TOURS -->
 <section class="tours" id="tours">
   <div class="container">
-    <div class="tours-header">
-      <div><span class="section-label">Our Tours</span><h2 class="section-title">Explore Bali with our curated experiences</h2></div>
-      <a href="https://wa.me/610452499051" class="btn-outline" target="_blank">Custom Tour <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="tours-search">
-      <svg class="tours-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      <input type="text" id="tourSearch" placeholder="Search tours by name, location, or category..." oninput="filterTours()">
-      <button class="tours-search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <div class="section-header">
+      <span class="section-label">Our tours</span>
+      <h2 class="section-title">What we actually do</h2>
+      <p class="section-desc">Six different day trips, each built around a specific part of the island. All fully private — just your group and your guide.</p>
     </div>
     <div class="tours-grid" id="toursGrid">
-      <div class="tours-loading" style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-muted)">Loading tours...</div>
+      <!-- Static cards shown until Supabase loads -->
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">🏔️<span class="tour-badge best-seller">Best seller</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Mt. Batur sunrise trek</div>
+          <div class="tour-meta"><span>⏱ 8 hrs</span><span>👥 Max 10</span><span>📍 Kintamani</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 500k <span>/ person</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">🌿<span class="tour-badge popular">Popular</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Ubud highlights day trip</div>
+          <div class="tour-meta"><span>⏱ 10 hrs</span><span>👥 Max 10</span><span>📍 Ubud</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 900k <span>/ car</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">🏝️<span class="tour-badge popular">Popular</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Nusa Penida day trip</div>
+          <div class="tour-meta"><span>⏱ 11 hrs</span><span>👥 Max 10</span><span>📍 Nusa Penida</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 900k <span>/ car</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.8</span>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">🛕<span class="tour-badge best-seller">Best seller</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Temple & culture tour</div>
+          <div class="tour-meta"><span>⏱ 9 hrs</span><span>👥 Max 10</span><span>📍 South Bali</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 900k <span>/ car</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">💧<span class="tour-badge popular">Popular</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Hidden gems & waterfalls</div>
+          <div class="tour-meta"><span>⏱ 10 hrs</span><span>👥 Max 8</span><span>📍 North Bali</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 900k <span>/ car</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card" onclick="openModal(-1)">
+        <div class="tour-thumb">📸<span class="tour-badge premium">Premium</span></div>
+        <div class="tour-body">
+          <div class="tour-name">Honeymoon & photography</div>
+          <div class="tour-meta"><span>⏱ 10 hrs</span><span>👥 Max 4</span><span>📍 All Bali</span></div>
+          <div class="tour-footer">
+            <span class="tour-price">IDR 1.8jt <span>/ car</span></span>
+            <span class="tour-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 5.0</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="tourModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="modalHero"></div>
-    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-body" id="modalBody">
+      <div class="modal-title">Book this tour</div>
+      <div class="modal-actions">
+        <a href="https://wa.me/610452499051" target="_blank" class="modal-wa-btn">💬 WhatsApp us</a>
+        <a href="https://wa.me/610452499051" target="_blank" class="modal-book-btn">Book now →</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<section class="features">
+<!-- PRICING -->
+<section class="pricing" id="pricing">
   <div class="container">
-    <div class="features-header"><span class="section-label">Why Choose Us</span><h2 class="section-title">Explore Bali with our expertise</h2><p class="section-desc">Everything you need for a perfect Bali experience, handled by passionate local experts.</p></div>
-    <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">✈️</div><h3>Free Hotel Pickup</h3><p>Complimentary pickup and drop-off from anywhere in Bali. Travel in comfort with modern, air-conditioned vehicles.</p></div>
-      <div class="feature-card"><div class="feature-icon">🗣️</div><h3>English Speaking Guide</h3><p>Our friendly, knowledgeable guides speak fluent English and love sharing the stories and secrets of Bali.</p></div>
-      <div class="feature-card"><div class="feature-icon">🔒</div><h3>Free Cancellation</h3><p>Plans change — we get it. Cancel up to 24 hours before your tour for a full refund, no questions asked.</p></div>
-      <div class="feature-card"><div class="feature-icon">🏝️</div><h3>Private & Exclusive</h3><p>Every tour is just for you and your group. No strangers, no waiting — pure private Bali experience.</p></div>
-      <div class="feature-card"><div class="feature-icon">⭐</div><h3>4.9 Star Rating</h3><p>Hundreds of happy guests and glowing reviews. We're committed to making every tour extraordinary.</p></div>
-      <div class="feature-card"><div class="feature-icon">🎨</div><h3>Custom Itineraries</h3><p>Want something special? We'll craft a completely personalized tour tailored to your interests and pace.</p></div>
+    <div class="section-header">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-desc">All prices are per car, not per person — so the more people in your group, the better value. No hidden fees.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Standard -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Standard</div>
+        <div class="pricing-price">IDR 850k <span>/ car</span></div>
+        <div class="pricing-desc">Private driver, your choice of stops. Good for groups who already know what they want to see.</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            AC car, up to 10 hours
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Hotel pickup & drop-off
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Parking & fuel included
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Free cancellation 24h
+          </div>
+        </div>
+        <a href="https://wa.me/610452499051" target="_blank" class="pricing-btn pricing-btn-ghost">Book this</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card featured">
+        <span class="pricing-card-badge badge-green">Most popular</span>
+        <div class="pricing-tier">Premium</div>
+        <div class="pricing-price">IDR 1.2jt <span>/ car</span></div>
+        <div class="pricing-desc">All-inclusive. Driver plus local guide, entrance fees, and lunch — nothing left to sort on the day.</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Everything in Standard
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            English-speaking local guide
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            All entrance fees covered
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Lunch at a local warung
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Custom itinerary planning
+          </div>
+        </div>
+        <a href="https://wa.me/610452499051" target="_blank" class="pricing-btn pricing-btn-primary">Book this</a>
+      </div>
+
+      <!-- Exclusive -->
+      <div class="pricing-card">
+        <span class="pricing-card-badge badge-purple">Exclusive</span>
+        <div class="pricing-tier">Exclusive</div>
+        <div class="pricing-price">IDR 1.8jt <span>/ car</span></div>
+        <div class="pricing-desc">For couples and photographers. Premium package plus a photographer, drone footage, and a private sunset dinner.</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Everything in Premium
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Professional photographer
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Drone footage included
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Flower decoration
+          </div>
+          <div class="pricing-feature">
+            <div class="pricing-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div>
+            Private sunset dinner
+          </div>
+        </div>
+        <a href="https://wa.me/610452499051" target="_blank" class="pricing-btn pricing-btn-ghost">Book this</a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="testimonials" id="reviews">
+<!-- WHY US -->
+<section class="why-us" id="about">
   <div class="container">
-    <div class="testimonials-header"><span class="section-label">Guest Reviews</span><h2 class="section-title">What our guests are saying</h2><p class="section-desc">Real stories from real travelers who experienced the magic of Bali with us.</p></div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">The best tour experience in Bali! Our guide was incredibly knowledgeable and took us to places we never would have found on our own. The sunrise trek was life-changing.</p><div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="testimonial-author"><div class="testimonial-avatar">SM</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-role">Australia</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">We booked the Nusa Penida tour and it exceeded every expectation. The driver was safe, the guide was fun, and the views were absolutely unreal. Highly recommend!</p><div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="testimonial-author"><div class="testimonial-avatar">JK</div><div><div class="testimonial-name">James K.</div><div class="testimonial-role">United Kingdom</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Our family had an amazing time. The hidden gems tour showed us a side of Bali that most tourists never see. The kids loved every moment. Thank you Tour Bali Lestari!</p><div class="testimonial-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="testimonial-author"><div class="testimonial-avatar">LW</div><div><div class="testimonial-name">Lisa W.</div><div class="testimonial-role">United States</div></div></div></div>
+    <div class="section-header">
+      <span class="section-label">Why us</span>
+      <h2 class="section-title">What makes us different</h2>
+      <p class="section-desc">We're small on purpose. That means you deal with actual guides, not a call centre.</p>
     </div>
-  </div>
-</section>
-
-<section class="stats-strip">
-  <div class="container">
-    <div class="stat-item"><div class="stat-val">500+</div><div class="stat-label">Happy Guests</div></div>
-    <div class="stat-item"><div class="stat-val">4.9</div><div class="stat-label">Average Rating</div></div>
-    <div class="stat-item"><div class="stat-val">15+</div><div class="stat-label">Tour Options</div></div>
-    <div class="stat-item"><div class="stat-val">100%</div><div class="stat-label">Free Cancellation</div></div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="faq-layout">
-      <div><span class="section-label">FAQ</span><h2 class="section-title">Most asked questions</h2><p class="section-desc">Everything you need to know before booking your Bali adventure with us.</p><a href="https://wa.me/610452499051" class="btn-primary" style="margin-top:32px" target="_blank">Still have questions? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-      <div class="faq-list">
-        <div class="faq-item active"><div class="faq-question" onclick="toggleFaq(this)">How do I book a tour? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Simply click the "Book Now" button or send us a WhatsApp message. We'll confirm your tour, arrange hotel pickup, and handle everything.</p></div></div>
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is hotel pickup included? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Yes! All tours include complimentary hotel pickup and drop-off from anywhere in Bali with modern, air-conditioned vehicles.</p></div></div>
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What is the cancellation policy? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Free cancellation up to 24 hours before your scheduled tour. Need to change dates? We're happy to reschedule at no extra cost.</p></div></div>
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are the tours private? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Absolutely! Every tour is exclusively for you and your group. No shared buses, no strangers — just you and our dedicated guide.</p></div></div>
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I customize my tour? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Yes! Tell us your interests, pace, and must-see spots, and we'll design a perfect day just for you.</p></div></div>
-        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What should I bring? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><p>Comfortable shoes, sunscreen, a hat, swimwear (for water activities), and a camera. We provide water and equipment.</p></div></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="why-title">Real local knowledge</div>
+        <div class="why-desc">Our guides are from the areas they show you. They know which spots are worth the detour and which ones aren't.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="why-title">No surprises on the day</div>
+        <div class="why-desc">We confirm your pickup time, route, and inclusions the night before. You wake up knowing exactly what to expect.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <div class="why-title">100% private, always</div>
+        <div class="why-desc">Every tour is exclusively for your group. We don't do shared buses or combined groups — ever.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="why-title">Flexible pickup times</div>
+        <div class="why-desc">Early sunrise treks or a relaxed 9am start — we work around your schedule, not the other way around.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="why-title">Modern, clean vehicles</div>
+        <div class="why-desc">Air-conditioned Toyota Hiace or Innova. Cleaned before every tour. Seatbelts, phone charging, and cold water included.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <div class="why-title">We reply fast</div>
+        <div class="why-desc">Most WhatsApp messages answered within 15 minutes. If you have a question at 11pm, we're probably awake.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="insta-strip">
-  <div class="insta-grid">
-    <div class="insta-item"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero1.jpeg" alt="Bali"><div class="insta-overlay"><span class="insta-handle">@tourbalilestari</span></div></div>
-    <div class="insta-item"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about2.jpeg" alt="Bali"><div class="insta-overlay"><span class="insta-handle">@tourbalilestari</span></div></div>
-    <div class="insta-item"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about4.jpeg" alt="Bali"><div class="insta-overlay"><span class="insta-handle">@tourbalilestari</span></div></div>
-    <div class="insta-item"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/about1.jpeg" alt="Bali"><div class="insta-overlay"><span class="insta-handle">@tourbalilestari</span></div></div>
-    <div class="insta-item"><img src="https://nmsublcklbpyccaendon.supabase.co/storage/v1/object/public/images/hero3.jpeg" alt="Bali"><div class="insta-overlay"><span class="insta-handle">@tourbalilestari</span></div></div>
-  </div>
-</section>
-
-<section class="cta-banner" id="contact">
+<!-- FAQ -->
+<section style="padding:80px 0;background:var(--bg-soft);border-top:0.5px solid var(--border)" id="faq">
   <div class="container">
-    <div class="cta-inner">
-      <span class="section-label" style="justify-content:center">Ready to Go?</span>
-      <h2 class="section-title">Start your Bali adventure today</h2>
-      <p class="section-desc">Book your private tour now and experience the real Bali with passionate local guides.</p>
-      <div class="cta-buttons">
-        <a href="https://wa.me/610452499051" class="btn-accent" target="_blank">💬 Chat on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#tours" class="btn-outline-light">View All Tours</a>
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start">
+      <div>
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Common questions</h2>
+        <p class="section-desc" style="margin-bottom:28px">Anything else? Send us a message on WhatsApp — we'll get back to you quickly.</p>
+        <a href="https://wa.me/610452499051" class="btn-primary" target="_blank">Ask on WhatsApp</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border);border-radius:12px;overflow:hidden">
+        <div class="faq-item active">
+          <div class="faq-question" onclick="toggleFaq(this)">How do I book? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="faq-answer"><p>Send us a WhatsApp message with your dates, group size, and which tour you're interested in. We'll confirm everything within a few hours.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Is hotel pickup really free? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="faq-answer"><p>Yes — pickup and drop-off from anywhere in Bali is included in all packages. No extra charges.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What's your cancellation policy? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="faq-answer"><p>Cancel at least 24 hours before your tour for a full refund. Need to reschedule? We'll move your booking to another date at no cost.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can I customise the itinerary? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="faq-answer"><p>Always. Tell us the spots you want to visit and we'll build the day around them. There's no fixed script.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What should I bring? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="faq-answer"><p>Comfortable shoes, sunscreen, and a hat. For water activities, bring a swimsuit and a change of clothes. We provide water and a dry bag.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="cta-title">Ready to plan your Bali trip?</div>
+      <div class="cta-sub">Tell us your dates and we'll put together the right itinerary for your group. No obligation.</div>
+    </div>
+    <div class="cta-actions">
+      <a href="https://wa.me/610452499051" class="btn-wa" target="_blank">💬 Chat on WhatsApp</a>
+      <a href="#tours" class="btn-browse">Browse tours</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand"><a href="#" class="logo">Tour Bali <span>Lestari</span></a><p>Private tours designed by Balinese locals. Temples, volcanoes, ocean adventures and hidden gems — all yours exclusively.</p><div class="footer-social"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">YT</a></div></div>
-      <div class="footer-col"><h4>Menu</h4><ul><li><a href="#tours">Tours</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div class="footer-col"><h4>Tours</h4><ul><li><a href="#">Mt. Batur Sunrise</a></li><li><a href="#">Temple & Culture</a></li><li><a href="#">Nusa Penida</a></li><li><a href="#">Hidden Gems</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/610452499051">WhatsApp</a></li><li><a href="mailto:info@tourbalilestari.com">Email Us</a></li><li><a href="#">Bali, Indonesia</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>&copy; 2026 Tour Bali Lestari</span><span>Designed with ♥ in Bali</span></div>
+    <a href="#" class="logo">Tour Bali <span>Lestari</span></a>
+    <span class="footer-copy">© 2026 Tour Bali Lestari · Bali, Indonesia</span>
   </div>
 </footer>
 
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if (!wasActive) item.classList.add('active');
+}
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>
