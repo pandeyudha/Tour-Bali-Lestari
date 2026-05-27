@@ -131,8 +131,8 @@ img{max-width:100%;display:block}
 /* ── PRICING ──────────────────────────────────────── */
 .pricing{padding:80px 0;background:var(--bg-soft);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.pricing-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-card);padding:28px 24px;position:relative;transition:border-color .15s ease}
-.pricing-card.featured{border:2px solid var(--green)}
+.pricing-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-card);padding:28px 24px;position:relative;transition:border .15s ease}
+.pricing-card:hover{border:2px solid var(--green)}
 .pricing-card-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:500;border-radius:100px;margin-bottom:16px}
 .badge-green{background:var(--green-bg);color:var(--green-dark);border:0.5px solid rgba(29,158,117,.3)}
 .badge-purple{background:#ede9fe;color:#534AB7;border:0.5px solid rgba(83,74,183,.25)}
