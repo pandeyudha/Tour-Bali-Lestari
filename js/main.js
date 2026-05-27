@@ -103,8 +103,6 @@ loadTours();
 
 /* popup */
 (function() {
-  if (localStorage.getItem('blPopupSeen')) return;
-
   let deadline = parseInt(localStorage.getItem('blPopupDeadline'));
   if (!deadline || isNaN(deadline)) {
     deadline = Date.now() + 30 * 24 * 60 * 60 * 1000;
