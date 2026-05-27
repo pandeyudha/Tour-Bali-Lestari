@@ -303,6 +303,37 @@
   </div>
 </footer>
 
+<!-- Popup -->
+<div class="popup-overlay" id="blPopup" onclick="if(event.target===this)closePopup()">
+  <div class="popup-modal">
+    <div class="popup-top">
+      <div class="popup-pattern"></div>
+      <button class="popup-close" onclick="closePopup()">✕</button>
+      <div class="popup-badge">Limited-time deal</div>
+      <div class="popup-discount">10<span>% OFF</span></div>
+      <div class="popup-sub">All private tours in Bali</div>
+    </div>
+    <div class="popup-mid">
+      <div class="popup-timer-label">Offer expires in</div>
+      <div class="popup-timer">
+        <div class="popup-block"><span class="popup-num" id="blDays">00</span><span class="popup-unit">Days</span></div>
+        <div class="popup-sep">:</div>
+        <div class="popup-block"><span class="popup-num" id="blHours">00</span><span class="popup-unit">Hours</span></div>
+        <div class="popup-sep">:</div>
+        <div class="popup-block"><span class="popup-num" id="blMins">00</span><span class="popup-unit">Mins</span></div>
+        <div class="popup-sep">:</div>
+        <div class="popup-block"><span class="popup-num" id="blSecs">00</span><span class="popup-unit">Secs</span></div>
+      </div>
+    </div>
+    <div class="popup-bot">
+      <div class="popup-bot-title">Book your Bali tour now</div>
+      <div class="popup-bot-desc">Discount applied automatically. Just contact us and mention this offer.</div>
+      <a href="https://wa.me/610452499051?text=Hi!+I+want+to+book+a+private+tour+and+claim+the+10%25+discount" target="_blank" class="popup-wa-btn" onclick="closePopup()">Book via WhatsApp</a>
+      <span class="popup-skip" onclick="closePopup()">Maybe later</span>
+    </div>
+  </div>
+</div>
+
 <script src="js/main.js"></script>
 </body>
 </html>

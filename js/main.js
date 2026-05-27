@@ -100,3 +100,43 @@ function closeModal() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 loadTours();
+
+/* popup */
+(function() {
+  if (localStorage.getItem('blPopupSeen')) return;
+
+  let deadline = parseInt(localStorage.getItem('blPopupDeadline'));
+  if (!deadline || isNaN(deadline)) {
+    deadline = Date.now() + 30 * 24 * 60 * 60 * 1000;
+    localStorage.setItem('blPopupDeadline', deadline);
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateTimer() {
+    const diff = Math.max(0, deadline - Date.now());
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('blDays').textContent = pad(d);
+    document.getElementById('blHours').textContent = pad(h);
+    document.getElementById('blMins').textContent = pad(m);
+    document.getElementById('blSecs').textContent = pad(s);
+  }
+
+  setTimeout(function() {
+    const popup = document.getElementById('blPopup');
+    if (!popup) return;
+    updateTimer();
+    popup.classList.add('active');
+    setInterval(updateTimer, 1000);
+  }, 2000);
+})();
+
+function closePopup() {
+  const popup = document.getElementById('blPopup');
+  if (!popup) return;
+  popup.classList.remove('active');
+  localStorage.setItem('blPopupSeen', 'true');
+}
