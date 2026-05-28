@@ -89,10 +89,11 @@ function openModal(i) {
     : '<div class="modal-hero-noimg">🏝️</div>';
 
   // parse description — supports plain text or JSON
-  let desc = '', notIncl = '', meetingHtml = '', vehicleHtml = '', restrictHtml = '', cancelHtml = '';
+  let desc = '', notIncl = '', meetingHtml = '', vehicleHtml = '', restrictHtml = '', cancelHtml = '', pageUrl = '';
   if (t.description) {
     try {
       const d = JSON.parse(t.description);
+      if (d.page_url) pageUrl = d.page_url;
       desc = d.summary ? '<h4 class="modal-section-title">About this tour</h4><p class="modal-desc">' + d.summary + '</p>' : '';
       if (d.course && d.course.length)
         desc += '<h4 class="modal-section-title">Course</h4><div class="modal-course">' + d.course.map(c => '<div class="modal-course-item"><div class="modal-course-header"><span class="modal-course-name">' + c.name + '</span><span class="modal-course-dur">' + c.duration + '</span></div><p class="modal-course-desc">' + c.desc + '</p></div>').join('') + '</div>';
@@ -115,6 +116,9 @@ function openModal(i) {
     ? '<h4 class="modal-section-title">What\'s included</h4><div class="modal-includes">' + t.includes.split(',').map(x => '<span class="modal-include-tag">✓ ' + x.trim() + '</span>').join('') + '</div>'
     : '';
 
+  const detailHref = pageUrl || ('https://wa.me/' + wa + '?text=' + waMsg);
+  const detailTarget = pageUrl ? '_self' : '_blank';
+
   bodyEl.innerHTML = '<h2 class="modal-title">' + (t.title || 'Tour') + '</h2>'
     + '<div class="modal-price">$' + (t.price || 0) + ' <span>/ person</span></div>'
     + '<div class="modal-meta">'
@@ -124,7 +128,7 @@ function openModal(i) {
     + (t.category ? '<div class="modal-meta-item">🏷 ' + t.category + '</div>' : '')
     + '</div>'
     + desc + incl + notIncl + meetingHtml + vehicleHtml + restrictHtml + cancelHtml
-    + '<div class="modal-actions"><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-wa-btn">💬 WhatsApp</a><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-book-btn">Book Now →</a></div>';
+    + '<div class="modal-actions"><a href="' + detailHref + '" target="' + detailTarget + '" class="modal-book-btn">View Detail →</a></div>';
   modal.classList.add('active'); document.body.style.overflow = 'hidden';
 }
 

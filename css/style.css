@@ -136,10 +136,8 @@ section{padding:100px 0}
 .modal-desc{font-size:.92rem;color:var(--text-body);line-height:1.8;margin-bottom:28px}
 .modal-includes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
 .modal-include-tag{padding:7px 16px;background:var(--accent-light);border-radius:100px;font-size:.8rem;font-weight:500;color:var(--accent)}
-.modal-actions{display:flex;gap:14px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--border)}
-.modal-wa-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;background:#25d366;color:#fff;font-weight:600;font-size:.92rem;border-radius:100px;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none}
-.modal-wa-btn:hover{background:#1fb855;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
-.modal-book-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;background:var(--text-dark);color:#fff;font-weight:600;font-size:.92rem;border-radius:100px;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none}
+.modal-actions{display:flex;gap:14px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--border);justify-content:center}
+.modal-book-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 48px;background:var(--text-dark);color:#fff;font-weight:600;font-size:.95rem;border-radius:100px;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none;min-width:200px}
 .modal-book-btn:hover{background:var(--accent);transform:translateY(-2px)}
 @media(max-width:600px){.modal-body{padding:24px 20px}.modal-hero{height:260px}.modal-title{font-size:1.5rem}}
 
