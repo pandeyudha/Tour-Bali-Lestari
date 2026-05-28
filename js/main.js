@@ -52,7 +52,9 @@ function renderTours(list) {
     const img = t.image_url
       ? `<div class="tour-card-img"><img src="${t.image_url}" alt="${t.title || ''}" loading="lazy"><span class="tour-card-tag">${t.category || 'Tour'}</span></div>`
       : `<div class="tour-card-img tour-card-noimg"><span class="tour-card-tag">${t.category || 'Tour'}</span>🏝️</div>`;
-    const desc = t.description ? (t.description.length > 120 ? t.description.slice(0, 120) + '...' : t.description) : 'Experience an unforgettable Bali adventure.';
+    let descText = 'Experience an unforgettable Bali adventure.';
+    if (t.description) { try { descText = JSON.parse(t.description).summary || descText; } catch(e) { descText = t.description; } }
+    const desc = descText.length > 120 ? descText.slice(0, 120) + '...' : descText;
     return `<div class="tour-card" onclick="openModal(${idx})" style="opacity:0;transform:translateY(32px);transition:opacity .6s var(--ease) ${i * .08}s,transform .6s var(--ease) ${i * .08}s">${img}<div class="tour-card-body"><h3 class="tour-card-title">${t.title || 'Tour'}</h3><p class="tour-card-desc">${desc}</p><div class="tour-card-meta">${t.location ? `<span>📍 ${t.location}</span>` : ''}${t.duration ? `<span>⏱ ${t.duration}</span>` : ''}${t.max_group ? `<span>👥 Max ${t.max_group}</span>` : ''}</div><div class="tour-card-footer"><span class="tour-card-price">$${t.price || 0} <span>/ person</span></span><span class="tour-card-link">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></div>`;
   }).join('');
   setTimeout(() => { grid.querySelectorAll('.tour-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 100);
@@ -85,10 +87,42 @@ function openModal(i) {
   heroEl.innerHTML = t.image_url
     ? '<div class="modal-hero"><img src="' + t.image_url + '" alt="' + (t.title || '') + '"><span class="modal-hero-tag">' + (t.category || 'Tour') + '</span></div>'
     : '<div class="modal-hero-noimg">🏝️</div>';
-  var incl = t.includes
-    ? '<h4 class="modal-section-title">What\'s Included</h4><div class="modal-includes">' + t.includes.split(',').map(x => '<span class="modal-include-tag">✓ ' + x.trim() + '</span>').join('') + '</div>'
+
+  // parse description — supports plain text or JSON
+  let desc = '', notIncl = '', meetingHtml = '', vehicleHtml = '', restrictHtml = '', cancelHtml = '';
+  if (t.description) {
+    try {
+      const d = JSON.parse(t.description);
+      desc = d.summary ? '<h4 class="modal-section-title">About this tour</h4><p class="modal-desc">' + d.summary + '</p>' : '';
+      if (d.not_includes && d.not_includes.length)
+        notIncl = '<h4 class="modal-section-title">Not included</h4><div class="modal-includes">' + d.not_includes.map(x => '<span class="modal-notincl-tag">✕ ' + x + '</span>').join('') + '</div>';
+      if (d.meeting_time || d.meeting_place)
+        meetingHtml = '<h4 class="modal-section-title">Meeting info</h4><div class="modal-meeting">' + (d.meeting_time ? '<div class="modal-meeting-item">🕐 <span>' + d.meeting_time + '</span></div>' : '') + (d.meeting_place ? '<div class="modal-meeting-item">📍 <span>' + d.meeting_place + '</span></div>' : '') + '</div>';
+      if (d.vehicle)
+        vehicleHtml = '<h4 class="modal-section-title">Vehicle</h4><p class="modal-desc" style="margin-bottom:20px">🚗 ' + d.vehicle + '</p>';
+      if (d.restrictions && d.restrictions.length)
+        restrictHtml = '<h4 class="modal-section-title">Important notes</h4><ul class="modal-restrict-list">' + d.restrictions.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+      if (d.cancellation)
+        cancelHtml = '<h4 class="modal-section-title">Cancellation policy</h4><p class="modal-desc modal-cancel">' + d.cancellation + '</p>';
+    } catch(e) {
+      desc = '<h4 class="modal-section-title">About this tour</h4><p class="modal-desc">' + t.description + '</p>';
+    }
+  }
+
+  const incl = t.includes
+    ? '<h4 class="modal-section-title">What\'s included</h4><div class="modal-includes">' + t.includes.split(',').map(x => '<span class="modal-include-tag">✓ ' + x.trim() + '</span>').join('') + '</div>'
     : '';
-  bodyEl.innerHTML = '<h2 class="modal-title">' + (t.title || 'Tour') + '</h2><div class="modal-price">$' + (t.price || 0) + ' <span>/ person</span></div><div class="modal-meta">' + (t.location ? '<div class="modal-meta-item">📍 ' + t.location + '</div>' : '') + (t.duration ? '<div class="modal-meta-item">⏱ ' + t.duration + '</div>' : '') + (t.max_group ? '<div class="modal-meta-item">👥 Max ' + t.max_group + '</div>' : '') + (t.category ? '<div class="modal-meta-item">🏷 ' + t.category + '</div>' : '') + '</div>' + (t.description ? '<h4 class="modal-section-title">About This Tour</h4><p class="modal-desc">' + t.description + '</p>' : '') + incl + '<div class="modal-actions"><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-wa-btn">💬 WhatsApp</a><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-book-btn">Book Now →</a></div>';
+
+  bodyEl.innerHTML = '<h2 class="modal-title">' + (t.title || 'Tour') + '</h2>'
+    + '<div class="modal-price">$' + (t.price || 0) + ' <span>/ person</span></div>'
+    + '<div class="modal-meta">'
+    + (t.location ? '<div class="modal-meta-item">📍 ' + t.location + '</div>' : '')
+    + (t.duration ? '<div class="modal-meta-item">⏱ ' + t.duration + '</div>' : '')
+    + (t.max_group ? '<div class="modal-meta-item">👥 Max ' + t.max_group + '</div>' : '')
+    + (t.category ? '<div class="modal-meta-item">🏷 ' + t.category + '</div>' : '')
+    + '</div>'
+    + desc + incl + notIncl + meetingHtml + vehicleHtml + restrictHtml + cancelHtml
+    + '<div class="modal-actions"><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-wa-btn">💬 WhatsApp</a><a href="https://wa.me/' + wa + '?text=' + waMsg + '" target="_blank" class="modal-book-btn">Book Now →</a></div>';
   modal.classList.add('active'); document.body.style.overflow = 'hidden';
 }
 
