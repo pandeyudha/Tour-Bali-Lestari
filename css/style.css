@@ -243,6 +243,13 @@ section{padding:100px 0}
 .insta-handle{color:var(--text-white);font-weight:600;font-size:.85rem}
 @media(max-width:768px){.insta-grid{grid-template-columns:repeat(3,1fr)}.insta-item:nth-child(n+4){display:none}}
 
+.modal-course{display:flex;flex-direction:column;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:var(--radius)}
+.modal-course-item{padding:16px 18px;border-bottom:1px solid var(--border)}
+.modal-course-item:last-child{border-bottom:none}
+.modal-course-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.modal-course-name{font-family:var(--font-display);font-size:.95rem;font-weight:500;color:var(--text-dark)}
+.modal-course-dur{font-size:.76rem;color:var(--text-muted);background:var(--bg-alt);padding:3px 10px;border-radius:100px}
+.modal-course-desc{font-size:.82rem;color:var(--text-body);line-height:1.65}
 .modal-notincl-tag{padding:7px 16px;background:#fdeaea;border-radius:100px;font-size:.8rem;font-weight:500;color:#c0392b}
 .modal-meeting{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 .modal-meeting-item{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--text-body);padding:10px 14px;background:var(--bg-alt);border-radius:10px}

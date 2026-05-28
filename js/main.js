@@ -94,6 +94,8 @@ function openModal(i) {
     try {
       const d = JSON.parse(t.description);
       desc = d.summary ? '<h4 class="modal-section-title">About this tour</h4><p class="modal-desc">' + d.summary + '</p>' : '';
+      if (d.course && d.course.length)
+        desc += '<h4 class="modal-section-title">Course</h4><div class="modal-course">' + d.course.map(c => '<div class="modal-course-item"><div class="modal-course-header"><span class="modal-course-name">' + c.name + '</span><span class="modal-course-dur">' + c.duration + '</span></div><p class="modal-course-desc">' + c.desc + '</p></div>').join('') + '</div>';
       if (d.not_includes && d.not_includes.length)
         notIncl = '<h4 class="modal-section-title">Not included</h4><div class="modal-includes">' + d.not_includes.map(x => '<span class="modal-notincl-tag">✕ ' + x + '</span>').join('') + '</div>';
       if (d.meeting_time || d.meeting_place)
