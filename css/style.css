@@ -157,8 +157,13 @@ section{padding:100px 0}
 .badge-accent{background:var(--accent-light);color:var(--accent)}
 .badge-purple{background:rgba(83,74,183,.08);color:#534AB7}
 .pricing-tier{font-family:var(--font-display);font-size:.85rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.pricing-price{font-family:var(--font-display);font-size:2rem;font-weight:500;color:var(--text-dark);margin-bottom:4px;letter-spacing:-.02em}
-.pricing-price span{font-size:.82rem;font-weight:400;color:var(--text-muted);font-family:var(--font-body)}
+.pricing-price{font-family:var(--font-display);font-size:1.55rem;font-weight:500;color:var(--text-dark);margin-bottom:4px;letter-spacing:-.02em}
+.pricing-price span{font-size:.78rem;font-weight:400;color:var(--text-muted);font-family:var(--font-body)}
+.pricing-note{font-size:.78rem;color:var(--text-muted);font-weight:500;margin-bottom:18px;letter-spacing:.02em}
+.pricing-prices{margin-bottom:20px}
+.pricing-price-row{padding:10px 0;border-top:1px solid var(--border)}
+.pricing-price-row:first-child{border-top:none;padding-top:0}
+.pricing-price-label{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-weight:600}
 .pricing-desc{font-size:.88rem;color:var(--text-body);margin-bottom:24px;line-height:1.65}
 .pricing-divider{height:1px;background:var(--border);margin-bottom:24px}
 .pricing-features{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
