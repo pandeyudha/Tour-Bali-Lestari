@@ -30,6 +30,37 @@ const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 const WA = "610452499051";
 let allTours = [];
 
+// Base price in DB stored as IDR. Rates = 1 IDR in target currency. Updated 2026-06-04.
+const RATES = { IDR: 1, USD: 1/16200, AUD: 1/10500, KRW: 1/12 };
+const SYMBOLS = { IDR: 'Rp', USD: '$', AUD: 'A$', KRW: '₩' };
+let currentCurrency = localStorage.getItem('blCurrency') || 'IDR';
+
+function formatPrice(idr) {
+  const n = Number(idr) || 0;
+  const converted = n * RATES[currentCurrency];
+  const rounded = currentCurrency === 'IDR' || currentCurrency === 'KRW'
+    ? Math.round(converted)
+    : Math.round(converted * 100) / 100;
+  return SYMBOLS[currentCurrency] + rounded.toLocaleString('en-US');
+}
+
+function setCurrency(cur) {
+  if (!RATES[cur]) return;
+  currentCurrency = cur;
+  localStorage.setItem('blCurrency', cur);
+  updateCurrencyUI();
+  renderTours(allTours);
+  // re-render open modal if any
+  const modal = document.getElementById('tourModal');
+  if (modal && modal.classList.contains('active') && window._openModalIdx != null) openModal(window._openModalIdx);
+}
+
+function updateCurrencyUI() {
+  document.querySelectorAll('.currency-pill').forEach(b => {
+    b.classList.toggle('active', b.dataset.cur === currentCurrency);
+  });
+}
+
 async function loadTours() {
   const grid = document.getElementById('toursGrid');
   try {
@@ -55,7 +86,7 @@ function renderTours(list) {
     let descText = 'Experience an unforgettable Bali adventure.';
     if (t.description) { try { descText = JSON.parse(t.description).summary || descText; } catch(e) { descText = t.description; } }
     const desc = descText.length > 120 ? descText.slice(0, 120) + '...' : descText;
-    return `<div class="tour-card" onclick="openModal(${idx})" style="opacity:0;transform:translateY(32px);transition:opacity .6s var(--ease) ${i * .08}s,transform .6s var(--ease) ${i * .08}s">${img}<div class="tour-card-body"><h3 class="tour-card-title">${t.title || 'Tour'}</h3><p class="tour-card-desc">${desc}</p><div class="tour-card-meta">${t.location ? `<span>📍 ${t.location}</span>` : ''}${t.duration ? `<span>⏱ ${t.duration}</span>` : ''}${t.max_group ? `<span>👥 Max ${t.max_group}</span>` : ''}</div><div class="tour-card-footer"><span class="tour-card-price">$${t.price || 0} <span>/ person</span></span><span class="tour-card-link">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></div>`;
+    return `<div class="tour-card" onclick="openModal(${idx})" style="opacity:0;transform:translateY(32px);transition:opacity .6s var(--ease) ${i * .08}s,transform .6s var(--ease) ${i * .08}s">${img}<div class="tour-card-body"><h3 class="tour-card-title">${t.title || 'Tour'}</h3><p class="tour-card-desc">${desc}</p><div class="tour-card-meta">${t.location ? `<span>📍 ${t.location}</span>` : ''}${t.duration ? `<span>⏱ ${t.duration}</span>` : ''}${t.max_group ? `<span>👥 Max ${t.max_group}</span>` : ''}</div><div class="tour-card-footer"><span class="tour-card-price">${formatPrice(t.price)} <span>/ person</span></span><span class="tour-card-link">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></div>`;
   }).join('');
   setTimeout(() => { grid.querySelectorAll('.tour-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 100);
 }
@@ -82,6 +113,7 @@ function clearSearch() {
 
 function openModal(i) {
   const t = allTours[i]; if (!t) return;
+  window._openModalIdx = i;
   const modal = document.getElementById('tourModal'), heroEl = document.getElementById('modalHero'), bodyEl = document.getElementById('modalBody');
   const wa = t.whatsapp || WA, waMsg = encodeURIComponent('Hi! I\'m interested in booking: ' + t.title);
   heroEl.innerHTML = t.image_url
@@ -120,7 +152,7 @@ function openModal(i) {
   const detailTarget = pageUrl ? '_self' : '_blank';
 
   bodyEl.innerHTML = '<h2 class="modal-title">' + (t.title || 'Tour') + '</h2>'
-    + '<div class="modal-price">$' + (t.price || 0) + ' <span>/ person</span></div>'
+    + '<div class="modal-price">' + formatPrice(t.price) + ' <span>/ person</span></div>'
     + '<div class="modal-meta">'
     + (t.location ? '<div class="modal-meta-item">📍 ' + t.location + '</div>' : '')
     + (t.duration ? '<div class="modal-meta-item">⏱ ' + t.duration + '</div>' : '')
@@ -135,10 +167,12 @@ function openModal(i) {
 function closeModal() {
   document.getElementById('tourModal').classList.remove('active');
   document.body.style.overflow = '';
+  window._openModalIdx = null;
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+updateCurrencyUI();
 loadTours();
 
 /* popup */
