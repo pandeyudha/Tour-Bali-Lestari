@@ -94,7 +94,7 @@ section{padding:100px 0}
 .tours-search-clear.show{display:flex}
 .tours-search-clear:hover{background:var(--text-dark);color:var(--text-white)}
 .tours-no-results{grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-muted);font-size:1rem}
-.tours-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.tours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .tour-card{background:var(--bg);border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--border);transition:all .4s var(--ease);cursor:pointer}
 .tour-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
 .tour-card-img{position:relative;height:300px;overflow:hidden}
