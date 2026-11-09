@@ -64,7 +64,7 @@ function updateCurrencyUI() {
 async function loadTours() {
   const grid = document.getElementById('toursGrid');
   try {
-    const res = await fetch(`${SB_URL}/rest/v1/tours?status=eq.approved&order=created_at.desc`, {
+    const res = await fetch(`${SB_URL}/rest/v1/tours?status=eq.approved&order=created_at.asc`, {
       headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
     });
     if (!res.ok) throw new Error('Failed');
