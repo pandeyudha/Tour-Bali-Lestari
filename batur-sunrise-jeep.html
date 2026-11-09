@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bali Sunrise Jeep Tour + Professional Photographer &amp; Kintamani Café | Tour Bali Lestari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--bg-alt:#f7f5f2;--bg-hero:#faf8f5;
+    --bg-dark:#1a1a1a;
+    --text-dark:#1a1a1a;--text-body:#555550;--text-muted:#8a8a85;--text-white:#ffffff;
+    --accent:#d4772c;--accent-hover:#c06820;--accent-light:rgba(212,119,44,.08);
+    --green:#1D9E75;--green-hover:#0F6E56;
+    --border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.14);
+    --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+    --shadow-md:0 8px 30px rgba(0,0,0,.06);
+    --shadow-lg:0 16px 50px rgba(0,0,0,.1);
+    --font-display:'Playfair Display',Georgia,serif;
+    --font-body:'DM Sans','Helvetica Neue',sans-serif;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --radius:12px;--radius-lg:20px;--radius-xl:28px;
+    --max:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text-dark);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;border:0;cursor:pointer;background:none}
+  .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  .nav{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:var(--max);margin:0 auto}
+  .logo{font-family:var(--font-display);font-size:1.45rem;font-weight:600;letter-spacing:-.02em}
+  .nav-links{display:flex;gap:28px;font-size:.92rem;font-weight:500;color:var(--text-body)}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--text-dark);color:var(--text-white);border-radius:100px;font-size:.88rem;font-weight:600;transition:all .25s var(--ease)}
+  .nav-cta:hover{background:var(--accent)}
+
+  .breadcrumb{padding:20px 0 6px;font-size:.84rem;color:var(--text-muted)}
+  .breadcrumb a:hover{color:var(--accent)}
+  .breadcrumb .sep{margin:0 6px;opacity:.6}
+
+  .head{padding:14px 0 28px}
+  .head-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border-strong);border-radius:100px;font-size:.78rem;font-weight:500;color:var(--text-body);margin-bottom:18px}
+  .head-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .head h1{font-family:var(--font-display);font-size:clamp(2rem,4.2vw,3.2rem);font-weight:500;line-height:1.12;letter-spacing:-.025em;margin-bottom:16px;max-width:900px}
+  .head-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .rating{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:600}
+  .stars{color:var(--accent);letter-spacing:2px;font-size:1.05rem}
+  .meta-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--bg-alt);border-radius:100px;font-size:.82rem;color:var(--text-body)}
+
+  .gallery{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:200px 200px;gap:10px;margin-bottom:40px;border-radius:var(--radius-lg);overflow:hidden}
+  .gallery .g1{grid-row:1 / span 2;position:relative}
+  .gallery figure{position:relative;margin:0;overflow:hidden;background:var(--bg-alt)}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .gallery figure:hover img{transform:scale(1.04)}
+  .gallery figcaption{position:absolute;bottom:14px;left:14px;padding:6px 12px;background:rgba(0,0,0,.55);color:#fff;font-size:.8rem;font-weight:500;border-radius:100px;backdrop-filter:blur(8px)}
+
+  .tabs{position:sticky;top:69px;z-index:30;background:var(--bg);border-bottom:1px solid var(--border);margin-bottom:0}
+  .tabs-inner{display:flex;gap:4px;max-width:var(--max);margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none}
+  .tabs-inner::-webkit-scrollbar{display:none}
+  .tab{padding:18px 18px;font-size:.92rem;font-weight:500;color:var(--text-muted);border-bottom:2px solid transparent;transition:all .2s var(--ease);white-space:nowrap}
+  .tab:hover{color:var(--text-dark)}
+  .tab.active{color:var(--text-dark);border-bottom-color:var(--accent)}
+
+  .main{display:grid;grid-template-columns:1fr 380px;gap:50px;padding:50px 0 100px;align-items:start}
+  .content{min-width:0}
+  .content section{padding:34px 0;border-bottom:1px solid var(--border)}
+  .content section:first-child{padding-top:0}
+  .content section:last-child{border-bottom:0}
+  .content h2{font-family:var(--font-display);font-size:1.75rem;font-weight:500;letter-spacing:-.015em;margin-bottom:18px;line-height:1.25}
+  .content p{color:var(--text-body);margin-bottom:14px;font-size:1rem}
+  .content p:last-child{margin-bottom:0}
+  .content strong{color:var(--text-dark);font-weight:600}
+
+  .about-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:22px;padding-top:22px;border-top:1px solid var(--border)}
+  .about-meta div{display:flex;flex-direction:column;gap:2px}
+  .about-meta dt{font-size:.82rem;color:var(--text-muted);font-weight:500}
+  .about-meta dd{font-size:.95rem;color:var(--text-dark);font-weight:500}
+
+  .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;margin-top:8px}
+  .inc-grid ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .inc-grid li{display:flex;align-items:flex-start;gap:12px;font-size:.95rem;color:var(--text-body);line-height:1.5}
+  .inc-grid .mark{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:700;margin-top:1px}
+  .inc-grid .yes .mark{background:rgba(29,158,117,.12);color:var(--green)}
+  .inc-grid .no .mark{background:rgba(212,119,44,.12);color:var(--accent)}
+  .inc-grid .no li{color:var(--text-muted)}
+
+  .itin{position:relative;margin-top:8px}
+  .itin::before{content:"";position:absolute;left:14px;top:14px;bottom:14px;width:2px;background:var(--border)}
+  .itin-item{position:relative;padding-left:52px;padding-bottom:28px}
+  .itin-item:last-child{padding-bottom:0}
+  .itin-num{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--bg);border:2px solid var(--border);display:grid;place-items:center;font-size:.82rem;font-weight:700;color:var(--text-muted)}
+  .itin-item.on .itin-num{background:var(--accent);border-color:var(--accent);color:#fff}
+  .itin-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;color:var(--text-dark);margin-bottom:4px;line-height:1.3}
+  .itin-sub{font-size:.82rem;color:var(--accent);font-weight:500;margin-bottom:8px}
+  .itin-desc{font-size:.95rem;color:var(--text-body);line-height:1.6;max-width:600px}
+
+  .meta-row{display:grid;grid-template-columns:140px 1fr;gap:16px 24px;margin-top:8px;font-size:.95rem}
+  .meta-row dt{color:var(--text-muted);font-weight:500}
+  .meta-row dd{color:var(--text-dark)}
+  .bullet-list{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:12px}
+  .bullet-list li{position:relative;padding-left:22px;color:var(--text-body);font-size:.95rem;line-height:1.6}
+  .bullet-list li::before{content:"";position:absolute;left:4px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  .booking{position:sticky;top:130px;background:var(--bg);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-md)}
+  .book-from{font-size:.82rem;color:var(--text-muted);font-weight:500;margin-bottom:4px}
+  .book-price{font-family:var(--font-display);font-size:2.2rem;font-weight:600;color:var(--text-dark);letter-spacing:-.02em;line-height:1.1}
+  .book-price-sub{font-size:.85rem;color:var(--text-muted);margin-top:4px;margin-bottom:22px}
+  .book-calc{border-top:1px solid var(--border);padding-top:16px;margin-bottom:6px}
+  .book-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:.92rem;color:var(--text-body)}
+  .book-row.total{border-top:1px solid var(--border);margin-top:4px;padding-top:14px;font-weight:600;color:var(--text-dark);font-size:1rem}
+  .book-qty{display:flex;align-items:center;gap:8px;background:var(--bg-alt);border-radius:100px;padding:4px}
+  .book-qty button{width:28px;height:28px;border-radius:50%;background:var(--bg);color:var(--text-dark);font-weight:600;font-size:1rem;display:grid;place-items:center;transition:all .2s var(--ease)}
+  .book-qty button:hover{background:var(--accent);color:#fff}
+  .book-qty span{min-width:20px;text-align:center;font-weight:600;font-size:.92rem}
+  .book-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:var(--green);color:#fff;border-radius:100px;font-size:.98rem;font-weight:600;margin-top:18px;transition:all .25s var(--ease)}
+  .book-cta:hover{background:var(--green-hover);transform:translateY(-1px);box-shadow:0 10px 24px rgba(29,158,117,.3)}
+  .book-note{text-align:center;font-size:.82rem;color:var(--text-muted);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:6px}
+  .book-note::before{content:"✓";color:var(--green);font-weight:700}
+
+  footer{background:var(--bg-alt);padding:56px 0 30px;border-top:1px solid var(--border)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+  .foot-brand p{color:var(--text-body);font-size:.92rem;margin-top:12px;max-width:320px}
+  .foot-col h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:14px}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot-col a{color:var(--text-body);font-size:.9rem}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-size:.82rem;color:var(--text-muted)}
+  .foot-bottom span.heart{color:var(--accent)}
+
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:35;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px rgba(29,158,117,.4);transition:transform .2s var(--ease)}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:28px;height:28px}
+
+  @media (max-width:900px){
+    .nav-links{display:none}
+    .main{grid-template-columns:1fr;gap:28px;padding:30px 0 60px}
+    .booking{position:static;margin-bottom:20px}
+    .head h1{font-size:1.8rem}
+    .gallery{grid-template-columns:1fr;grid-template-rows:260px;grid-auto-rows:140px}
+    .gallery .g1{grid-row:auto}
+    .gallery figure:nth-child(n+4){display:none}
+    .inc-grid{grid-template-columns:1fr;gap:20px}
+    .about-meta{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
+    .foot-brand{grid-column:1 / -1}
+    .foot-bottom{flex-direction:column;gap:8px}
+    .meta-row{grid-template-columns:1fr}
+    .meta-row dt{margin-top:8px}
+    .tabs{top:65px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">Tour Bali Lestari</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#tours">Tours</a>
+      <a href="/#about">About</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="https://wa.me/610452499051" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.9 7c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1 0-.3-.1-.6-.2zM12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      Book Now
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="/">Asia</a><span class="sep">›</span>
+    <a href="/">Indonesia</a><span class="sep">›</span>
+    <a href="/">Bali</a><span class="sep">›</span>
+    <a href="/">Kintamani</a><span class="sep">›</span>
+    <span>Jeep Tours</span>
+  </nav>
+</div>
+
+<header class="container head">
+  <span class="head-badge">Best Price Guarantee</span>
+  <h1>Bali Sunrise Jeep Tour + Professional Photographer &amp; Kintamani Café</h1>
+  <div class="head-meta">
+    <div class="rating"><span class="stars">★★★★★</span> <span>5.0</span></div>
+    <span class="meta-pill">Private tour</span>
+    <span class="meta-pill">Balinese local guides</span>
+  </div>
+</header>
+
+<div class="container">
+  <div class="gallery">
+    <figure class="g1">
+      <img src="https://images.unsplash.com/photo-1588625500630-3f7f555ec669?w=1200&q=80" alt="Mount Batur sunrise from the Jeep">
+      <figcaption>Mount Batur sunrise from the Jeep</figcaption>
+    </figure>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=800&q=80" alt="Black Lava off-road">
+      <figcaption>Black Lava off-road</figcaption>
+    </figure>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1583309217394-d4bf5e4dbabc?w=800&q=80" alt="Kintamani café view">
+      <figcaption>Kintamani café view</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tabs-inner" id="tabs">
+    <a href="#overview" class="tab active">Overview</a>
+    <a href="#included" class="tab">Included</a>
+    <a href="#itinerary" class="tab">Itinerary</a>
+    <a href="#meeting" class="tab">Meeting</a>
+    <a href="#policies" class="tab">Policies</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="main">
+    <div class="content">
+
+      <section id="overview">
+        <h2>About this tour</h2>
+        <p>Watch the sunrise over Mount Batur, then ride a private 4WD Jeep off-road across the dramatic Black Lava field — with a professional photographer capturing every moment, and a relaxed stop at a Kintamani café overlooking the lake and mountains.</p>
+        <p>The route reaches a top private parking point for the best sunrise view over Mount Batur, before the Jeep adventure through the unique black lava terrain left by the volcano's past eruptions. A professional photographer and Korean-speaking guide are included — no extra charge.</p>
+
+        <dl class="about-meta">
+          <div><dt>Duration</dt><dd>About 8 hours</dd></div>
+          <div><dt>Group</dt><dd>Private — minimum 2 people</dd></div>
+          <div><dt>Confirmation</dt><dd>Instant confirmation</dd></div>
+          <div><dt>Languages</dt><dd>English · Korean · Indonesian</dd></div>
+        </dl>
+      </section>
+
+      <section id="included">
+        <h2>What's included</h2>
+        <div class="inc-grid">
+          <ul class="yes">
+            <li><span class="mark">✓</span> Private 4WD Jeep + experienced local driver</li>
+            <li><span class="mark">✓</span> English / Korean speaking guide</li>
+            <li><span class="mark">✓</span> Professional photographer</li>
+            <li><span class="mark">✓</span> High-quality digital photos (sent after the tour)</li>
+            <li><span class="mark">✓</span> Black Lava entrance ticket</li>
+            <li><span class="mark">✓</span> Hotel / airport pickup &amp; drop-off</li>
+            <li><span class="mark">✓</span> Kintamani café visit</li>
+            <li><span class="mark">✓</span> Bottled water</li>
+          </ul>
+          <ul class="no">
+            <li><span class="mark">✕</span> Personal expenses</li>
+            <li><span class="mark">✕</span> Personal travel insurance</li>
+            <li><span class="mark">✕</span> Meals (unless stated)</li>
+            <li><span class="mark">✕</span> Gratuities (optional)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="itinerary">
+        <h2>Itinerary (about 8 hours)</h2>
+        <div class="itin">
+          <div class="itin-item on">
+            <span class="itin-num">1</span>
+            <h3 class="itin-title">Pickup from hotel or Ngurah Rai Airport</h3>
+            <div class="itin-sub">02:00</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">2</span>
+            <h3 class="itin-title">Jeep meeting point</h3>
+            <div class="itin-sub">04:00</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">3</span>
+            <h3 class="itin-title">Sunrise at Mount Batur</h3>
+            <div class="itin-sub">06:00</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">4</span>
+            <h3 class="itin-title">Black Lava off-road expedition</h3>
+            <div class="itin-sub">06:30</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">5</span>
+            <h3 class="itin-title">Photo shoot at the main spots</h3>
+            <div class="itin-sub">07:30</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">6</span>
+            <h3 class="itin-title">Move to Kintamani café</h3>
+            <div class="itin-sub">08:30</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">7</span>
+            <h3 class="itin-title">Lunch, free time &amp; extra photos</h3>
+            <div class="itin-sub">09:00 – 10:00</div>
+          </div>
+          <div class="itin-item on">
+            <span class="itin-num">8</span>
+            <h3 class="itin-title">Return to hotel</h3>
+            <div class="itin-sub">10:00 – 11:00</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="meeting">
+        <h2>Meeting time &amp; pickup point</h2>
+        <dl class="meta-row">
+          <dt>Meeting time</dt><dd>03:00 AM.</dd>
+          <dt>Pickup point</dt><dd>Your hotel lobby, or Ngurah Rai Airport (DPS).</dd>
+        </dl>
+      </section>
+
+      <section id="policies">
+        <h2>Important to know</h2>
+        <ul class="bullet-list">
+          <li>Groups of 1–2 use a comfortable City Car (5 seats); groups of 4–10 use a Hiace (14 seats).</li>
+          <li>Free pickup in the Ubud area. An extra Rp 50,000 applies for pickup in Seminyak, Kuta, Canggu, Jimbaran, or Nusa Dua.</li>
+          <li>Up to 2 pieces of luggage allowed in the City Car; more than 2 may need an extra vehicle (additional fee).</li>
+          <li>A child car seat is available on request for an extra USD 10.</li>
+          <li>For safety, pregnant guests of 5 months or more cannot join the tour.</li>
+          <li>Pickup time may shift slightly due to traffic — we confirm your pickup before departure.</li>
+          <li>Please follow the dress code when visiting temples. We recommend personal travel insurance.</li>
+        </ul>
+
+        <h2 style="margin-top:34px">Cancellation &amp; refund policy</h2>
+        <ul class="bullet-list">
+          <li>Cancel <strong>before 9:00 AM the day before</strong> your tour: full 100% refund of the tour price.</li>
+          <li>Cancel <strong>after 9:00 AM the day before</strong> your tour: no cancellation or refund.</li>
+          <li>Cancellation times follow the local time at the tour location (WITA, Bali).</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <aside class="booking">
+      <div class="book-from">From</div>
+      <div class="book-price">Rp 872,000</div>
+      <div class="book-price-sub">per person · full day private</div>
+
+      <div class="book-calc">
+        <div class="book-row">
+          <span>People</span>
+          <div class="book-qty">
+            <button onclick="updateQty(-1)" aria-label="Decrease">−</button>
+            <span id="qty">2</span>
+            <button onclick="updateQty(1)" aria-label="Increase">+</button>
+          </div>
+        </div>
+        <div class="book-row">
+          <span id="calcLabel">2 people × Rp 872,000</span>
+          <span id="calcSub">Rp 1,744,000</span>
+        </div>
+        <div class="book-row total">
+          <span>Total</span>
+          <span id="calcTotal">Rp 1,744,000</span>
+        </div>
+      </div>
+
+      <p style="font-size:.82rem;color:var(--text-muted);margin:10px 0 0;line-height:1.5">Includes a professional photographer. Per person — bigger group, better value.</p>
+
+      <a class="book-cta" href="https://wa.me/610452499051?text=Hi!%20I%20want%20to%20book%20the%20Bali%20Sunrise%20Jeep%20Tour" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.9 7c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1 0-.3-.1-.6-.2zM12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Book on WhatsApp
+      </a>
+      <div class="book-note">Free cancellation up to 24 hours before</div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="logo">Tour Bali Lestari</a>
+        <p>Private tours designed by Balinese locals. Temples, volcanoes, beaches, and hidden gems — tailored just for your group.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tours">Tours</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Tours</h4>
+        <ul>
+          <li><a href="/uluwatu-tour">South Bali Private Day</a></li>
+          <li><a href="/nusa-penida-snorkeling">Nusa Penida Snorkeling</a></li>
+          <li><a href="/batur-sunrise-jeep">Batur Sunrise Jeep</a></li>
+          <li><a href="/">Hidden Gems</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/610452499051">WhatsApp</a></li>
+          <li><a href="mailto:info@tourbalilestari.com">Email Us</a></li>
+          <li><a href="#">Bali, Indonesia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tour Bali Lestari</span>
+      <span>Designed with <span class="heart">♥</span> in Bali</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/610452499051" aria-label="Chat on WhatsApp" target="_blank">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.9 7c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1 0-.3-.1-.6-.2zM12 2C6.5 2 2 6.5 2 12c0 1.7.4 3.4 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<script>
+  const PRICE = 872000;
+  let qty = 2;
+  const fmt = n => 'Rp ' + n.toLocaleString('en-US');
+  function updateQty(delta){
+    const next = qty + delta;
+    if(next < 2 || next > 20) return;
+    qty = next;
+    document.getElementById('qty').textContent = qty;
+    document.getElementById('calcLabel').textContent = qty + ' people × ' + fmt(PRICE);
+    document.getElementById('calcSub').textContent = fmt(qty * PRICE);
+    document.getElementById('calcTotal').textContent = fmt(qty * PRICE);
+  }
+
+  const tabs = document.querySelectorAll('.tab');
+  const sections = Array.from(tabs).map(t => document.querySelector(t.getAttribute('href')));
+  tabs.forEach(t => t.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(t.getAttribute('href'));
+    const offset = target.getBoundingClientRect().top + window.scrollY - 130;
+    window.scrollTo({top: offset, behavior:'smooth'});
+  }));
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + 160;
+    let activeIdx = 0;
+    sections.forEach((s, i) => { if(s && s.offsetTop <= scrollPos) activeIdx = i; });
+    tabs.forEach((t, i) => t.classList.toggle('active', i === activeIdx));
+  }, {passive:true});
+</script>
+
+</body>
+</html>
