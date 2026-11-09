@@ -98,13 +98,6 @@
       <input type="text" id="tourSearch" placeholder="Search tours by name, location, or category..." oninput="filterTours()">
       <button class="tours-search-clear" id="searchClear" onclick="clearSearch()">✕</button>
     </div>
-    <div class="currency-switcher" id="currencySwitcher">
-      <span class="currency-label">Currency:</span>
-      <button class="currency-pill" data-cur="IDR" onclick="setCurrency('IDR')">IDR</button>
-      <button class="currency-pill" data-cur="USD" onclick="setCurrency('USD')">USD</button>
-      <button class="currency-pill" data-cur="AUD" onclick="setCurrency('AUD')">AUD</button>
-      <button class="currency-pill" data-cur="KRW" onclick="setCurrency('KRW')">KRW</button>
-    </div>
     <div class="tours-grid" id="toursGrid">
       <div class="tours-loading" style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-muted)">Loading tours...</div>
     </div>

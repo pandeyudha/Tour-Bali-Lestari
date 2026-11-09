@@ -75,20 +75,72 @@ async function loadTours() {
   }
 }
 
+const GRID_TARGET = 8;
+
 function renderTours(list) {
   const grid = document.getElementById('toursGrid');
-  if (list.length === 0) { grid.innerHTML = '<div class="tours-no-results">🔍 No tours found. Try a different search.</div>'; return; }
-  grid.innerHTML = list.map((t, i) => {
+  const realCards = list.map((t, i) => {
     const idx = allTours.indexOf(t);
-    const img = t.image_url
-      ? `<div class="tour-card-img"><img src="${t.image_url}" alt="${t.title || ''}" loading="lazy"><span class="tour-card-tag">${t.category || 'Tour'}</span></div>`
-      : `<div class="tour-card-img tour-card-noimg"><span class="tour-card-tag">${t.category || 'Tour'}</span>🏝️</div>`;
-    let descText = 'Experience an unforgettable Bali adventure.';
-    if (t.description) { try { descText = JSON.parse(t.description).summary || descText; } catch(e) { descText = t.description; } }
-    const desc = descText.length > 120 ? descText.slice(0, 120) + '...' : descText;
-    return `<div class="tour-card" onclick="openModal(${idx})" style="opacity:0;transform:translateY(32px);transition:opacity .6s var(--ease) ${i * .08}s,transform .6s var(--ease) ${i * .08}s">${img}<div class="tour-card-body"><h3 class="tour-card-title">${t.title || 'Tour'}</h3><p class="tour-card-desc">${desc}</p><div class="tour-card-meta">${t.location ? `<span>📍 ${t.location}</span>` : ''}${t.duration ? `<span>⏱ ${t.duration}</span>` : ''}${t.max_group ? `<span>👥 Max ${t.max_group}</span>` : ''}</div><div class="tour-card-footer"><span class="tour-card-price">${formatPrice(t.price)} <span>/ person</span></span><span class="tour-card-link">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></div>`;
-  }).join('');
+    let d = {};
+    try { d = typeof t.description === 'string' ? JSON.parse(t.description) : (t.description || {}); } catch(e) {}
+    const images = (d.images && d.images.length) ? d.images : (t.image_url ? [t.image_url] : []);
+    const pageUrl = d.page_url || '';
+    const rating = typeof d.rating === 'number' ? d.rating.toFixed(1) : null;
+    const reviews = typeof d.reviews === 'number' ? d.reviews.toLocaleString('en-US') : null;
+    const badge = d.badge || '';
+
+    const slides = images.length
+      ? images.map((src, k) => `<img src="${src}" alt="${t.title||''}" loading="lazy" class="tour-slide${k===0?' active':''}" data-i="${k}">`).join('')
+      : `<div class="tour-noimg">🏝️</div>`;
+    const dots = images.length > 1
+      ? `<div class="tour-dots">${images.map((_,k)=>`<span class="tour-dot${k===0?' active':''}"></span>`).join('')}</div>`
+      : '';
+    const arrows = images.length > 1
+      ? `<button class="tour-arrow tour-arrow-prev" aria-label="Prev" onclick="event.stopPropagation();slideTour(this,-1)">‹</button>
+         <button class="tour-arrow tour-arrow-next" aria-label="Next" onclick="event.stopPropagation();slideTour(this,1)">›</button>`
+      : '';
+
+    const ratingEl = rating
+      ? `<div class="tour-rating"><span class="tour-dots-rating">${'●'.repeat(Math.round(parseFloat(rating)))}${'○'.repeat(5-Math.round(parseFloat(rating)))}</span><span class="tour-rating-num">${rating}</span>${reviews?`<span class="tour-reviews">(${reviews})</span>`:''}</div>`
+      : '';
+
+    const href = pageUrl || `https://wa.me/${t.whatsapp || WA}?text=${encodeURIComponent("Hi! I'm interested in booking: " + t.title)}`;
+    const target = pageUrl ? '_self' : '_blank';
+
+    return `<a class="tour-card" href="${href}" target="${target}" style="opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease) ${i*.08}s,transform .6s var(--ease) ${i*.08}s">
+      <div class="tour-card-img" data-idx="0" data-total="${images.length||1}">
+        ${slides}
+        ${arrows}
+        <button class="tour-heart" aria-label="Save" onclick="event.preventDefault();event.stopPropagation();this.classList.toggle('on')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        ${badge?`<span class="tour-badge">${badge}</span>`:''}
+        ${dots}
+      </div>
+      <div class="tour-card-body">
+        <h3 class="tour-card-title">${t.title || 'Tour'}</h3>
+        ${ratingEl}
+        ${t.category ? `<div class="tour-card-cat">${t.category}</div>` : ''}
+        <div class="tour-card-price"><span class="tour-from">from</span> <strong>${formatPrice(t.price)}</strong> <span class="tour-per">/ person</span></div>
+      </div>
+    </a>`;
+  });
+
+  const emptyCount = Math.max(0, GRID_TARGET - realCards.length);
+  const emptyCards = Array.from({length: emptyCount}, () => `<div class="tour-card tour-card-empty"><div class="tour-card-img tour-card-img-empty"></div><div class="tour-card-body tour-card-body-empty"></div></div>`);
+
+  grid.innerHTML = realCards.concat(emptyCards).join('');
   setTimeout(() => { grid.querySelectorAll('.tour-card').forEach(el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }); }, 100);
+}
+
+function slideTour(btn, dir) {
+  const wrap = btn.closest('.tour-card-img');
+  const slides = wrap.querySelectorAll('.tour-slide');
+  const dots = wrap.parentElement.querySelectorAll('.tour-dot');
+  const total = slides.length;
+  let idx = parseInt(wrap.dataset.idx || '0');
+  idx = (idx + dir + total) % total;
+  wrap.dataset.idx = idx;
+  slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+  dots.forEach((d, k) => d.classList.toggle('active', k === idx));
 }
 
 function filterTours() {
