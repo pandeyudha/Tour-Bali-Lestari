@@ -53,12 +53,32 @@
   .stars{color:var(--accent);letter-spacing:2px;font-size:1.05rem}
   .meta-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--bg-alt);border-radius:100px;font-size:.82rem;color:var(--text-body)}
 
-  .gallery{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:200px 200px;gap:10px;margin-bottom:40px;border-radius:var(--radius-lg);overflow:hidden}
+  .gallery{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:200px 200px;gap:10px;margin-bottom:40px;border-radius:var(--radius-lg);overflow:hidden;position:relative}
   .gallery .g1{grid-row:1 / span 2;position:relative}
-  .gallery figure{position:relative;margin:0;overflow:hidden;background:var(--bg-alt)}
+  .gallery figure{position:relative;margin:0;overflow:hidden;background:var(--bg-alt);cursor:pointer}
   .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
   .gallery figure:hover img{transform:scale(1.04)}
   .gallery figcaption{position:absolute;bottom:14px;left:14px;padding:6px 12px;background:rgba(0,0,0,.55);color:#fff;font-size:.8rem;font-weight:500;border-radius:100px;backdrop-filter:blur(8px)}
+  .lb-trigger{position:absolute;bottom:14px;right:14px;z-index:5;padding:9px 18px;background:rgba(255,255,255,.95);color:var(--text-dark);border:0;border-radius:100px;font-size:.84rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);transition:all .2s}
+  .lb-trigger:hover{background:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .lb-trigger svg{width:16px;height:16px}
+
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:100;display:flex;align-items:center;justify-content:center;animation:lbfade .2s ease}
+  .lb[hidden]{display:none}
+  @keyframes lbfade{from{opacity:0}to{opacity:1}}
+  .lb-img{max-width:92vw;max-height:84vh;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lb-close,.lb-prev,.lb-next{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:all .2s;line-height:1;z-index:2}
+  .lb-close{top:20px;right:20px;width:44px;height:44px;font-size:1.8rem;padding-bottom:4px}
+  .lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:54px;height:54px;font-size:2.4rem;padding-bottom:6px}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  .lb-close:hover,.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.22);transform:translateY(-50%) scale(1.05)}
+  .lb-close:hover{transform:scale(1.05)}
+  .lb-counter{position:absolute;top:24px;left:24px;color:rgba(255,255,255,.9);font-size:.88rem;font-weight:500;background:rgba(0,0,0,.4);padding:7px 15px;border-radius:100px;backdrop-filter:blur(8px)}
+  .lb-caption{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.95);font-size:.9rem;background:rgba(0,0,0,.45);padding:9px 18px;border-radius:100px;backdrop-filter:blur(8px);max-width:80vw;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:600px){
+    .lb-prev,.lb-next{width:44px;height:44px;font-size:1.9rem}
+    .lb-prev{left:10px}.lb-next{right:10px}
+  }
 
   .tabs{position:sticky;top:69px;z-index:30;background:var(--bg);border-bottom:1px solid var(--border);margin-bottom:0}
   .tabs-inner{display:flex;gap:4px;max-width:var(--max);margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none}
@@ -201,19 +221,33 @@
 
 <div class="container">
   <div class="gallery">
-    <figure class="g1">
+    <figure class="g1" onclick="openLB(0)">
       <img src="/img/nusa-penida/manta-ray.jpg" alt="Manta rays at Manta Bay">
       <figcaption>Manta rays at Manta Bay</figcaption>
     </figure>
-    <figure>
+    <figure onclick="openLB(1)">
       <img src="/img/nusa-penida/kelingking-beach.jpg" alt="Kelingking Beach">
       <figcaption>Kelingking Beach</figcaption>
     </figure>
-    <figure>
+    <figure onclick="openLB(2)">
       <img src="/img/nusa-penida/angels-billabong.jpg" alt="Angel's Billabong">
       <figcaption>Angel's Billabong</figcaption>
     </figure>
+    <button class="lb-trigger" onclick="openLB(0)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      View all 4 photos
+    </button>
   </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" hidden>
+  <button class="lb-close" onclick="closeLB()" aria-label="Close">×</button>
+  <button class="lb-prev" onclick="prevLB()" aria-label="Previous">‹</button>
+  <img class="lb-img" id="lbImg" alt="">
+  <button class="lb-next" onclick="nextLB()" aria-label="Next">›</button>
+  <div class="lb-counter" id="lbCount">1 / 4</div>
+  <div class="lb-caption" id="lbCap"></div>
 </div>
 
 <div class="tabs">
@@ -456,6 +490,39 @@
     document.getElementById('calcSub').textContent = fmt(qty * PRICE);
     document.getElementById('calcTotal').textContent = fmt(qty * PRICE);
   }
+
+  // Lightbox
+  const LB_IMAGES = [
+    {src:"/img/nusa-penida/manta-ray.jpg", cap:"Manta rays at Manta Bay"},
+    {src:"/img/nusa-penida/kelingking-beach.jpg", cap:"Kelingking Beach"},
+    {src:"/img/nusa-penida/angels-billabong.jpg", cap:"Angel's Billabong"},
+    {src:"/img/nusa-penida/crystal-bay.jpg", cap:"Crystal Bay snorkeling"}
+  ];
+  let lbIdx = 0;
+  function openLB(i){ lbIdx = i; document.getElementById('lb').hidden = false; document.body.style.overflow = 'hidden'; renderLB(); }
+  function closeLB(){ document.getElementById('lb').hidden = true; document.body.style.overflow = ''; }
+  function nextLB(){ lbIdx = (lbIdx + 1) % LB_IMAGES.length; renderLB(); }
+  function prevLB(){ lbIdx = (lbIdx - 1 + LB_IMAGES.length) % LB_IMAGES.length; renderLB(); }
+  function renderLB(){
+    const im = LB_IMAGES[lbIdx];
+    document.getElementById('lbImg').src = im.src;
+    document.getElementById('lbImg').alt = im.cap;
+    document.getElementById('lbCap').textContent = im.cap;
+    document.getElementById('lbCount').textContent = (lbIdx+1) + ' / ' + LB_IMAGES.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lb').hidden) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowRight') nextLB();
+    if (e.key === 'ArrowLeft') prevLB();
+  });
+  document.getElementById('lb').addEventListener('click', e => { if (e.target.id === 'lb') closeLB(); });
+  let tx = 0;
+  document.getElementById('lb').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.getElementById('lb').addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) dx > 0 ? prevLB() : nextLB();
+  }, {passive:true});
 
   const tabs = document.querySelectorAll('.tab');
   const sections = Array.from(tabs).map(t => document.querySelector(t.getAttribute('href')));
